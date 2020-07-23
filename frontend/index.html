@@ -3,7 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Aula prática 2</title>
   </head>
-  <body></body>
+  <body>
+    <h1>User Countries</h1>
+    <div class="flex-row">
+      <div id="spinner" class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <span>Aguarde...</span>
+    </div>
+
+    <div id="users">Usuários</div>
+    <script defer src="js/script.js"></script>
+  </body>
 </html>
