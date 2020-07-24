@@ -39,7 +39,10 @@ async function fetchCountries() {
 
   console.log(globalCountries);
 }
-function hideSpinner() {}
+function hideSpinner() {
+  const spinner = document.querySelector('#spinner');
+  spinner.classList.add('hide');
+}
 function mergeUsersAndCountries() {}
 function render() {}
 
