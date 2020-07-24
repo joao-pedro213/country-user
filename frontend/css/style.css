@@ -16,6 +16,11 @@ body {
   justify-content: flex-start;
 }
 
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
 .bordered {
   border: 1px solid lightgray;
   padding: 10px;
@@ -33,4 +38,8 @@ body {
 .flag {
   width: 30px;
   height: 15px;
+}
+
+.load-span {
+  margin-left: 15px;
 }

@@ -3,12 +3,47 @@ let globalCountries = [];
 let globalUserCountries = [];
 
 async function start() {
-  await fetchUsers();
-  await fetchCountries();
+  // await fetchUsers();
+  // await fetchCountries();
+
+  // console.time('promise p1');
+  // await promiseUsers();
+  // console.timeEnd('promise p1');
+  // console.time('promise p2');
+  // await promiseCountries();
+  // console.timeEnd('promise p2');
+
+  console.time('Load API data');
+  const p1 = promiseUsers();
+  const p2 = promiseCountries();
+  await Promise.all([p1, p2]);
+  console.timeEnd('Load API data');
 
   hideSpinner();
   mergeUsersAndCountries();
   render();
+}
+
+async function promiseUsers() {
+  return new Promise(async (resolve, reject) => {
+    const users = await fetchUsers();
+
+    setTimeout(() => {
+      console.log('PromiseUsers resolvida.');
+      resolve(users);
+    }, 3000);
+  });
+}
+
+async function promiseCountries() {
+  return new Promise(async (resolve, reject) => {
+    const countries = await fetchCountries();
+
+    setTimeout(() => {
+      console.log('promiseCountries resolvida.');
+      resolve(countries);
+    }, 2000);
+  });
 }
 
 async function fetchUsers() {
