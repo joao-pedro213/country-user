@@ -1,6 +1,10 @@
 let globalUsers = [];
 let globalCountries = [];
 let globalUserCountries = [];
+let globalFilteredUserCountries = [];
+
+let searchInput = null;
+let btnFilter = null;
 
 async function start() {
   // await fetchUsers();
@@ -12,6 +16,8 @@ async function start() {
   // console.time('promise p2');
   // await promiseCountries();
   // console.timeEnd('promise p2');
+  searchInput = document.querySelector('#search-input');
+  btnFilter = document.querySelector('#search-btn');
 
   console.time('Load API data');
   const p1 = promiseUsers();
@@ -22,6 +28,8 @@ async function start() {
   hideSpinner();
   mergeUsersAndCountries();
   render();
+
+  configFilter();
 }
 
 async function promiseUsers() {
@@ -29,7 +37,6 @@ async function promiseUsers() {
     const users = await fetchUsers();
 
     setTimeout(() => {
-      console.log('PromiseUsers resolvida.');
       resolve(users);
     }, 3000);
   });
@@ -40,7 +47,6 @@ async function promiseCountries() {
     const countries = await fetchCountries();
 
     setTimeout(() => {
-      console.log('promiseCountries resolvida.');
       resolve(countries);
     }, 2000);
   });
@@ -58,8 +64,6 @@ async function fetchUsers() {
       userPicture: picture.large,
     };
   });
-
-  //console.log(globalUsers);
 }
 
 async function fetchCountries() {
@@ -73,13 +77,16 @@ async function fetchCountries() {
       countryFlag: flag,
     };
   });
-
-  //console.log(globalCountries);
 }
 
 function hideSpinner() {
   const spinner = document.querySelector('#spinner');
   spinner.classList.add('hide');
+
+  searchInput.removeAttribute('readonly');
+  searchInput.focus();
+
+  btnFilter.removeAttribute('disabled');
 }
 
 function mergeUsersAndCountries() {
@@ -97,14 +104,24 @@ function mergeUsersAndCountries() {
     });
   });
 
-  console.log(globalUserCountries);
+  globalUserCountries.sort((a, b) => a.userName.localeCompare(b.userName));
+  globalFilteredUserCountries = [...globalUserCountries];
 }
 function render() {
   const divUsers = document.querySelector('#users');
 
+  if (globalFilteredUserCountries.length === 0) {
+    divUsers.innerHTML = `
+      <div class='row'>
+        <h6 class='search-msg center'>Nenhum usuário encontrado.</h6>
+      </div>
+    `;
+    return;
+  }
+
   divUsers.innerHTML = `
   <div class='row'>
-    ${globalUserCountries
+    ${globalFilteredUserCountries
       .map(({ countryFlag, userPicture, userName, countryName }) => {
         return `
           <div class='col s6 m4 l3'>
@@ -121,6 +138,29 @@ function render() {
       .join('')}
   </div>
   `;
+}
+
+function configFilter() {
+  searchInput.addEventListener('keyup', handleSearchInput);
+  btnFilter.addEventListener('click', handleSearchBtn);
+}
+
+function handleSearchBtn() {
+  const filterValue = searchInput.value.toLowerCase().trim();
+
+  globalFilteredUserCountries = globalUserCountries.filter((item) => {
+    return item.userName.toLowerCase().includes(filterValue);
+  });
+
+  render();
+}
+
+function handleSearchInput({ key }) {
+  if (key !== 'Enter') {
+    return;
+  }
+
+  handleSearchBtn();
 }
 
 start();

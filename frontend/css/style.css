@@ -43,3 +43,16 @@ body {
 .load-span {
   margin-left: 15px;
 }
+
+.search {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.search-btn {
+  margin-left: 15px;
+}
+
+.search-msg {
+  font-size: 1.5rem;
+}
