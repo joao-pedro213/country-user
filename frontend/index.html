@@ -12,7 +12,9 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="center">User Countries</h1>
+      <h1 class="center main-title">
+        User <span class="country-title">Countries.</span>
+      </h1>
       <div class="flex-row flex-center" id="spinner">
         <div class="preloader-wrapper small active">
           <div class="spinner-layer spinner-blue-only">
@@ -31,7 +33,13 @@
       </div>
 
       <div class="search flex-row flex-center">
-        <input type="text" id="search-input" placeholder="Filtro" readonly />
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Filtro"
+          readonly
+          style="border-bottom: 1px solid #7c4dff;"
+        />
         <button
           class="waves-effect waves-light btn search-btn"
           id="search-btn"
@@ -42,6 +50,16 @@
       </div>
 
       <div id="users"></div>
+
+      <div class="row center">
+        <div class="footer">
+          <p class="footer-text">
+            Bootcamp IGTI - Full Stack Developer -
+            <span class="footer-name">João Pedro Capobiango</span>
+          </p>
+        </div>
+      </div>
+    </div>
     </div>
     <script defer src="js/script.js"></script>
   </body>

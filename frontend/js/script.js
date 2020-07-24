@@ -124,11 +124,11 @@ function render() {
     ${globalFilteredUserCountries
       .map(({ countryFlag, userPicture, userName, countryName }) => {
         return `
-          <div class='col s6 m4 l3'>
-            <div class='flex-row bordered'>
+          <div class='col s6 m4 l4'>
+            <div class='flex-row bordered user'>
               <img class='avatar' src='${userPicture}' alt='${userName}' />
                 <div class='flex-column'>
-                  <span>${userName}</span>
+                  <span class='username'>${userName}</span>
                   <img class='flag' src='${countryFlag}' alt='${countryName}' />
                 </div>
             </div>

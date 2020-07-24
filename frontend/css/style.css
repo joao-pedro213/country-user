@@ -1,5 +1,6 @@
 body {
-  background-color: #ffffff;
+  background-color: #1c1c1c;
+  font-family: 'Fira Code', Courier, monospace;
 }
 
 .flex-row {
@@ -22,7 +23,7 @@ body {
 }
 
 .bordered {
-  border: 1px solid lightgray;
+  border: 1px solid #7b68ee;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
@@ -33,6 +34,7 @@ body {
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  border: 1px solid #7c4dff;
 }
 
 .flag {
@@ -42,6 +44,7 @@ body {
 
 .load-span {
   margin-left: 15px;
+  color: #ffffff;
 }
 
 .search {
@@ -51,8 +54,37 @@ body {
 
 .search-btn {
   margin-left: 15px;
+  background-color: #7c4dff;
 }
 
 .search-msg {
   font-size: 1.5rem;
+}
+
+.user {
+  background-color: #363636;
+}
+
+.username {
+  color: #ffffff;
+}
+
+input {
+  color: #ffffff;
+}
+
+.main-title {
+  color: #7c4dff;
+}
+
+.country-title {
+  color: #ffffff;
+}
+
+.footer-text {
+  color: #7c4dff;
+}
+
+.footer-name {
+  color: #ffffff;
 }
