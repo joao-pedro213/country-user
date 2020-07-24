@@ -7,6 +7,7 @@ async function start() {
   await fetchCountries();
 
   hideSpinner();
+  mergeUsersAndCountries();
 }
 
 async function fetchUsers() {
@@ -22,7 +23,7 @@ async function fetchUsers() {
     };
   });
 
-  console.log(globalUsers);
+  //console.log(globalUsers);
 }
 
 async function fetchCountries() {
@@ -37,13 +38,27 @@ async function fetchCountries() {
     };
   });
 
-  console.log(globalCountries);
+  //console.log(globalCountries);
 }
+
 function hideSpinner() {
   const spinner = document.querySelector('#spinner');
   spinner.classList.add('hide');
 }
-function mergeUsersAndCountries() {}
+
+function mergeUsersAndCountries() {
+  globalUserCountries = [];
+
+  globalUsers.forEach((user) => {
+    const country = globalCountries.find(
+      (country) => country.countryId === user.userCountry
+    );
+
+    globalUserCountries.push({ ...user, countryFlag: country.countryFlag });
+  });
+
+  console.log(globalUserCountries);
+}
 function render() {}
 
 start();
