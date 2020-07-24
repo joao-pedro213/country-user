@@ -69,11 +69,11 @@ function render() {
 
   divUsers.innerHTML = `
   <div class='row'>
-    ${globalUserCountries.map(
-      ({ countryFlag, userPicture, userName, countryName }) => {
+    ${globalUserCountries
+      .map(({ countryFlag, userPicture, userName, countryName }) => {
         return `
           <div class='col s6 m4 l3'>
-            <div class='flex-row' bordered>
+            <div class='flex-row bordered'>
               <img class='avatar' src='${userPicture}' alt='${userName}' />
                 <div class='flex-column'>
                   <span>${userName}</span>
@@ -82,8 +82,8 @@ function render() {
             </div>
           </div>
       `;
-      }
-    )}
+      })
+      .join('')}
   </div>
   `;
 }
